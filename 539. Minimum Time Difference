@@ -1,4 +1,4 @@
-Approach 1 :  Time Complexity O( nlogn )
+############# Approach 1 :  Time Complexity O( nlogn )  ##########################################
 
 class Solution:
     def findMinDifference(self, timePoints: List[str]) -> int:
@@ -10,8 +10,8 @@ class Solution:
         
         return min(ans, 24*60 - minutes[-1] + minutes[0]) 
         
-Approach 2 :  Bucket Sort
-              Time Complexity O( N )
+############## Approach 2 :  Bucket Sort            ###########################################
+                             Time Complexity O( N )
 
 class Solution:
     def findMinDifference(self, timePoints: List[str]) -> int:
