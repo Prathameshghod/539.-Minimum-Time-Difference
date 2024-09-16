@@ -1,0 +1,41 @@
+Approach 1 :  Time Complexity O( nlogn )
+
+class Solution:
+    def findMinDifference(self, timePoints: List[str]) -> int:
+        minutes = [int(time[:2])*60 +int(time[3:]) for time in timePoints]
+        
+        minutes.sort()
+        
+        ans = min(minutes[i+1] - minutes[i] for i in range(len(minutes)-1))
+        
+        return min(ans, 24*60 - minutes[-1] + minutes[0]) 
+        
+Approach 2 :  Bucket Sort
+              Time Complexity O( N )
+
+class Solution:
+    def findMinDifference(self, timePoints: List[str]) -> int:
+        minutes = [False]*24*60 
+        for time in timePoints:
+            h,m = map(int,time.split(":"))
+            min_time = h*60 + m 
+            
+            if minutes[min_time]:
+                return 0 
+            minutes[min_time]= True 
+        
+        pi = float("inf")
+        fi = float("inf")
+        li = float("inf")
+        ans = float("inf")
+        
+        for i in range(24*60):
+            if minutes[i]:
+                if pi!= float("inf"):
+                    ans = min(ans,i-pi)
+                pi = i
+                if fi == float("inf"):
+                    fi=i 
+                li=i 
+        return min(ans,24*60 - li + fi)
+                
